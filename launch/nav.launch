@@ -1,0 +1,18 @@
+<launch>
+    <node 
+        pkg="nav" 
+        name="map" 
+        type="map_node.py" 
+    />
+    <node 
+        pkg="nav" 
+        name="simulator" 
+        type="simulator_node.py" 
+    />
+    <node 
+        pkg="nav" 
+        name="navigation" 
+        type="navigation_node.py" 
+    />
+    <node pkg="rosbag" type="record" name="recording" args = "-O /vagrant/nav/bagfiles/recent_run /bike_pos" />
+</launch>

@@ -1,0 +1,20 @@
+<package>
+  <description brief="nav">
+
+     nav
+
+  </description>
+  <author>vagrant</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/nav</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+
+
+</package>
+
+
