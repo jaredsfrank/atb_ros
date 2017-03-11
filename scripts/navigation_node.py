@@ -2,7 +2,7 @@
 # license removed for brevity
 import rospy
 from std_msgs.msg import String
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Pose2D
 import nav
 import numpy as np
 from std_msgs.msg import Int32MultiArray
@@ -10,7 +10,7 @@ from std_msgs.msg import Int32MultiArray
 
 def callback(data):
     new_nav.map_model.bike.xy_coord = (data.x, data.y)
-    new_nav.map_model.bike.direction = data.z
+    new_nav.map_model.bike.direction = data.theta
 
 def path_parse(data):
     d = np.array(data.data).reshape(len(data.data)/4, 2, 2)
@@ -19,7 +19,7 @@ def path_parse(data):
 def talker():
     pub = rospy.Publisher('dir_to_turn', String, queue_size=10)
     rospy.init_node('navigation', anonymous=True)
-    rospy.Subscriber("bike_pos", Point, callback)
+    rospy.Subscriber("bike_pos", Pose2D, callback)
     rospy.Subscriber("paths", Int32MultiArray, path_parse)
     rate = rospy.Rate(100)
     while not rospy.is_shutdown():

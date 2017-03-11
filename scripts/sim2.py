@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Pose2D
 import time
 import random 
 import matplotlib
@@ -15,7 +15,7 @@ from std_msgs.msg import Int32MultiArray
 
 
 def update_graph(data):
-    bike_sim.set_xy(bike_sim.get_coordinates(data.x, data.y, data.z))
+    bike_sim.set_xy(bike_sim.get_coordinates(data.x, data.y, data.theta))
 
     
 def path_parse(data):
@@ -30,7 +30,7 @@ def path_parse(data):
 
 def listener():
     rospy.init_node('sim', anonymous=True)
-    rospy.Subscriber("bike_pos", Point, update_graph)
+    rospy.Subscriber("bike_pos", Pose2D, update_graph)
     global paths
     paths = rospy.Subscriber("paths", Int32MultiArray, path_parse)
     rate = rospy.Rate(100)

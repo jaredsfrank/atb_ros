@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Pose2D
 import time
 import random 
 import matplotlib
@@ -26,7 +26,7 @@ def path_parse(data):
     map_model.paths = d
 
 def listener():
-    pub = rospy.Publisher('bike_pos', Point)
+    pub = rospy.Publisher('bike_pos', Pose2D, queue_size=10)
     rospy.init_node('simulator', anonymous=True)
     rospy.Subscriber("dir_to_turn", String, update_graph)
     rospy.Subscriber("paths", Int32MultiArray, path_parse)
